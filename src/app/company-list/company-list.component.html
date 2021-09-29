@@ -1,0 +1,12 @@
+<app-company-sort></app-company-sort>
+<table>
+  <tr>
+    <th class="headOfLogo">Logo</th>
+    <th>Name</th>
+    <th>Industry</th>
+    <th>Type</th>
+  </tr>
+</table>
+<div *ngFor="let company of allCompany" class="list">
+  <app-company-item [company]="company"></app-company-item>
+</div>

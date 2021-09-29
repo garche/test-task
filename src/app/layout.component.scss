@@ -1,0 +1,29 @@
+h1{
+  font-size: 35px;
+  margin-left: 40%;
+}
+button{
+  width: 100%;
+  height: 35px;
+  text-align: center;
+  border: 0;
+  background-color: black;
+  color: azure;
+  font-size: 25px;
+}
+.wrapper{
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  margin-bottom: 3em;
+}
+.toMap{
+  grid-column-start: 4;
+}
+.toList{
+  grid-column-start: 2;
+}
+.forOutlet{
+  margin-left: 13%;
+  margin-right: 15%;
+  width: 72%;
+}
