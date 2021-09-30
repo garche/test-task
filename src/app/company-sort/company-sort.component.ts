@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {CompanyService} from "../data/service/company.service";
+import {CompanyWorkerService} from "../data/service/company-worker.service";
 
 @Component({
   selector: 'app-company-sort',
@@ -9,7 +9,7 @@ import {CompanyService} from "../data/service/company.service";
 export class CompanySortComponent {
 
   constructor(
-    private _company: CompanyService
+    private _company: CompanyWorkerService
   ) {}
 
   public sortCompany(key: string){

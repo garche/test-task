@@ -1,0 +1,26 @@
+.searchByName{
+  color: azure;
+  background-color: black;
+}
+input::-webkit-input-placeholder{color: azure}
+
+select{
+  color: azure;
+  background-color: black;
+  display: inline;
+  width: 200px;
+  height: 20px;
+  margin-top: 13px;
+}
+
+.wrapper{
+  display: grid;
+  grid-template-columns: 52% 48%;
+}
+
+p{
+  width: 150px;
+  margin: 16px 0 0 0;
+  font-weight: bold;
+}
+

@@ -9,14 +9,14 @@ import {Router} from "@angular/router";
   styleUrls: ['./company-item.component.scss']
 })
 export class CompanyItemComponent {
-  @Input() company!: CompanyInfo
+  @Input()public company!: CompanyInfo
 
   constructor(
     private _router: Router
   ) {}
 
   public goToDetail(){
-    this._router.navigateByUrl(`detail?id=${this.company.id}`).then(
+    this._router.navigateByUrl(`detail/company?id=${this.company.id}`).then(
       x => console.log('Go to detail of company number', this.company.id)
     )
   }

@@ -3,6 +3,7 @@
 }
 table{
   margin-bottom: 1em;
+  margin-top: 10px;
   border: 2px solid black;
   width: 100%;
   border-collapse: collapse;
@@ -12,7 +13,14 @@ th{
   width: 20%;
   text-align: center;
 }
-
 .headOfLogo{
   width: 23%;
+}
+.wrapper{
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+app-company-filter{
+  display: inline;
 }
