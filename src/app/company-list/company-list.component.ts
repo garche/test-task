@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CompanyInfo} from "../data/models/interfaces/company-info.interface";
+import {ICompanyInfo} from "../data/models/interfaces/company-info.interface";
 import {CompanyWorkerService} from "../data/service/company-worker.service";
 import {tap} from "rxjs/operators";
 import {ReceiveCompaniesService} from "../data/service/receive-companies.service";
@@ -10,21 +10,17 @@ import {ReceiveCompaniesService} from "../data/service/receive-companies.service
 })
 export class CompanyListComponent implements OnInit {
 
-  public allCompany: CompanyInfo[] = [];
+  public allCompany: ICompanyInfo[] = [];
 
   constructor(
     private _company: CompanyWorkerService,
-    private _receive: ReceiveCompaniesService
   ) {
   }
 
   public ngOnInit(): void {
-    this._receive.initList()
-    this._company.proxyTargetCompany.pipe(
-      tap((value:CompanyInfo[])=>{
-        this.allCompany = value
-      })
-    ).subscribe()
-    setTimeout(() => this._company.getFilterSheets(), 5000)
+    this._company.proxyTargetCompany
+    .subscribe((value:ICompanyInfo[])=>{
+      this.allCompany = value
+    })
   }
 }

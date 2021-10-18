@@ -11,15 +11,12 @@ export class LayoutComponent {
     private _router: Router
   ) {
   }
+
   public goToList(){
-    this._router.navigateByUrl('list').then(
-      x => console.log('W r go to list')
-    )
+    this._router.navigateByUrl('list').then()
   }
 
   public goToMap(){
-    this._router.navigateByUrl('map').then(
-      x => console.log('W r go to map')
-    )
+    this._router.navigateByUrl('map').then()
   }
 }

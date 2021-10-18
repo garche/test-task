@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CompanyInfo} from "../data/models/interfaces/company-info.interface";
+import {ICompanyInfo} from "../data/models/interfaces/company-info.interface";
 import {Router} from "@angular/router";
 
 
@@ -9,16 +9,14 @@ import {Router} from "@angular/router";
   styleUrls: ['./company-item.component.scss']
 })
 export class CompanyItemComponent {
-  @Input()public company!: CompanyInfo
+  @Input()public company!: ICompanyInfo
 
   constructor(
     private _router: Router
   ) {}
 
   public goToDetail(){
-    this._router.navigateByUrl(`detail/company?id=${this.company.id}`).then(
-      x => console.log('Go to detail of company number', this.company.id)
-    )
+    this._router.navigateByUrl(`detail/company?id=${this.company.id}`).then()
   }
 }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {CompanyInfo} from "../data/models/interfaces/company-info.interface";
+import {ICompanyInfo} from "../data/models/interfaces/company-info.interface";
 import {CompanyWorkerService} from "../data/service/company-worker.service";
 import {filter, switchMap, tap} from "rxjs/operators";
 
@@ -11,7 +11,7 @@ import {filter, switchMap, tap} from "rxjs/operators";
 })
 export class CompanyDetailComponent implements OnInit {
 
-  public company!: CompanyInfo;
+  public company!: ICompanyInfo;
 
   constructor(
     private _aRoute: ActivatedRoute,

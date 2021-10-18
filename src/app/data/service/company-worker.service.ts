@@ -1,28 +1,30 @@
 import { Injectable } from '@angular/core';
-import {CompanyInfo} from "../models/interfaces/company-info.interface";
+import {ICompanyInfo} from "../models/interfaces/company-info.interface";
 import {BehaviorSubject} from "rxjs";
+import {ReceiveCompaniesService} from "./receive-companies.service";
 
 @Injectable()
 export class CompanyWorkerService {
 
   public industryList: Set<string> = new Set<string>()
   public typeList: Set<string> = new Set<string>()
-  public resultList: CompanyInfo[] = [];
-  public companyList: CompanyInfo[] = [];
-  public actualityIndustry: CompanyInfo[] = [];
-  public actualityName: CompanyInfo[] = [];
-  public actualityType: CompanyInfo[] = [];
-  public proxyTargetCompany: BehaviorSubject<CompanyInfo[]> = new BehaviorSubject<CompanyInfo[]>([])
+  public resultList: ICompanyInfo[] = [];
+  public companyList: ICompanyInfo[] = [];
+  public actualityIndustry: ICompanyInfo[] = [];
+  public actualityName: ICompanyInfo[] = [];
+  public actualityType: ICompanyInfo[] = [];
+  public proxyTargetCompany: BehaviorSubject<ICompanyInfo[]> = new BehaviorSubject<ICompanyInfo[]>([])
 
-  constructor(){
-    this.proxyTargetCompany.next(this.companyList);
-    this.resultList = this.companyList;
-    this.actualityIndustry = this.companyList;
-    this.actualityType = this.companyList;
-    this.actualityName = this.companyList;
+  constructor(
+    private _receive: ReceiveCompaniesService
+  ){
+    this._receive.initList().subscribe(
+      // @ts-ignore
+      (x: ICompanyInfo[]) => this.initialise(x)
+    )
   }
 
-  public getCompany(key: number): CompanyInfo{
+  public getCompany(key: number): ICompanyInfo{
     return this.resultList.find((x) => x.id === key)!;
   }
 
@@ -60,7 +62,7 @@ export class CompanyWorkerService {
 
   public searchByName(key: string){
     this.actualityName = []
-    const bufferList: CompanyInfo[] = this.actualityIndustry.filter(x => this.actualityType.includes(x))
+    const bufferList: ICompanyInfo[] = this.actualityIndustry.filter(x => this.actualityType.includes(x))
     for(let company of this.companyList){
       if(company.business_name.toLowerCase().indexOf(key.toLowerCase()) === 0){
         this.actualityName.push(company)
@@ -71,7 +73,7 @@ export class CompanyWorkerService {
   }
 
   public searchByIndustry(key: string){
-    const bufferList: CompanyInfo[] = this.actualityType.filter(x => this.actualityName.includes(x))
+    const bufferList: ICompanyInfo[] = this.actualityType.filter(x => this.actualityName.includes(x))
     if(key !==''){
       this.actualityIndustry = [];
       for(let company of this.companyList){
@@ -88,7 +90,7 @@ export class CompanyWorkerService {
   }
 
   public searchByType(key: string){
-    const bufferList: CompanyInfo[] = this.actualityName.filter(x => this.actualityIndustry.includes(x))
+    const bufferList: ICompanyInfo[] = this.actualityName.filter(x => this.actualityIndustry.includes(x))
     if(key !== '') {
       this.actualityType = [];
       for (let company of this.companyList) {
@@ -102,6 +104,16 @@ export class CompanyWorkerService {
     }
     this.resultList = bufferList.filter(x => this.actualityType.includes(x))
     this.proxyTargetCompany.next(this.resultList)
+  }
+
+  private initialise(companyList: ICompanyInfo[]){
+    this.companyList = companyList
+    this.proxyTargetCompany.next(companyList);
+    this.resultList = companyList;
+    this.actualityIndustry = companyList;
+    this.actualityType = companyList;
+    this.actualityName = companyList;
+    this.getFilterSheets()
   }
 }
 

@@ -1,7 +1,7 @@
 import {Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { CompanyWorkerService } from "../data/service/company-worker.service";
-import { CompanyInfo } from "../data/models/interfaces/company-info.interface";
+import { ICompanyInfo } from "../data/models/interfaces/company-info.interface";
 import {mergeMap, tap} from "rxjs/operators";
 
 @Component({
