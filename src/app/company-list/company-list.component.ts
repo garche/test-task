@@ -23,4 +23,8 @@ export class CompanyListComponent implements OnInit {
       this.allCompany = value
     })
   }
+
+  public ngOnDestroy(): void{
+    this._company.resetList()
+  }
 }

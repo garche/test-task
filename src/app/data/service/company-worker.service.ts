@@ -106,6 +106,10 @@ export class CompanyWorkerService {
     this.proxyTargetCompany.next(this.resultList)
   }
 
+  public resetList():void{
+    this.proxyTargetCompany.next(this.companyList);
+  }
+
   private initialise(companyList: ICompanyInfo[]){
     this.companyList = companyList
     this.proxyTargetCompany.next(companyList);
